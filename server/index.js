@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose"); // Importamos Mongoose
 require("dotenv").config();
+const gastosRouter = require("./routes/gastos");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,6 +26,9 @@ mongoose
 app.get("/", (req, res) => {
   res.send("<h1>Servidor Patagonia Tracker activo y conectado a BD</h1>");
 });
+
+// Rutas API (GASTOS)
+app.use("/api/gastos", gastosRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
